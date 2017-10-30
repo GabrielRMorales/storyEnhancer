@@ -41,6 +41,18 @@
 
           //for downloading the changed files as a .doc
     var htmlDocument=e.target.result;
+    //changing the core text-remove this snippet to make it work as before
+    var this_text=htmlDocument.split("");
+      for (var i=0;i<this_text.length;i++){
+                if (this_text[i]=="�"){
+                    this_text[i]="'";
+                }
+      }
+      htmlDocument=this_text.join("");
+    //
+
+
+    //this snippet works
     $("#content_here").html(contents);
       var the_text=$("#content_here").html().split("");
       for (var i=0;i<the_text.length;i++){
@@ -49,19 +61,13 @@
                 }
       }
       $("#content_here").html(the_text.join(""));
-      htmlDocument=$("#content_here").html();
-   /* var this_text=$(".WordSection1").html().split("");
-      for (var i=0;i<this_text.length;i++){
-                if (this_text[i]=="�"){
-                    this_text[i]="'";
-                }
-      }
-      $(".WordSection1").html(the_text.join(""));
-    $(".WordSection1").html();*/
+    // 
+   
+    //this snippet works
     var dataUri = "data:text/html," + encodeURIComponent(htmlDocument);
     var link="data:text/html"+dataUri;
     $("#dl").attr("href",link);
-    
+    //
       
     /**********************************/
 
