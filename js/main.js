@@ -17,6 +17,7 @@ function readSingleFile(evt) {
             var the_text=e.target.result.split("");
             for (var i=0;i<the_text.length;i++){
                 //removes invalid chars
+                      //Improve this in case the ? appears as a space-replace with spaces if they appear in a series, but if a ? is found all by itself (not surrounded by other ? then replace with an apostrophe)
                       if (the_text[i]=="�"){
                           the_text[i]="'";
                       }
