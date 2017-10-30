@@ -20,143 +20,22 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-           
+       <main>
+       <h1>Story Enhancer</h1>
+       <p>In order for this to work, make sure to save your Word file as a .html (Save as Webpage). Then upload it here. Otherwise this will not go the way you think!</p>
        <input type="file" id="fileinput" />
-       <a id="dl" download="export.doc">Download Right here</a>
+       
        <h2>Info</h2>
        <p id="info"></p>
-       <button id="download_story">Download</button>
-       
+       <a id="dl" download="improved_story.doc">Download</a>
        <h2>Preview</h2>
        <p id="content_here"></p>
-<script type="text/javascript">
-   function readSingleFile(evt) {
-    //Retrieve the first (and only!) File from the FileList object
-    var f = evt.target.files[0]; 
-
-    if (f) {
-      var r = new FileReader();
-      r.onload = function(e) { 
-          var contents = e.target.result;
-
-          //for downloading the changed files as a .doc
-    var htmlDocument=e.target.result;
-    //changing the core text-remove this snippet to make it work as before
-    var this_text=htmlDocument.split("");
-      for (var i=0;i<this_text.length;i++){
-                if (this_text[i]=="�"){
-                    this_text[i]="'";
-                }
-      }
-      htmlDocument=this_text.join("");
-    //
-
-
-    //this snippet works
-    $("#content_here").html(contents);
-      var the_text=$("#content_here").html().split("");
-      for (var i=0;i<the_text.length;i++){
-                if (the_text[i]=="�"){
-                    the_text[i]="'";
-                }
-      }
-      $("#content_here").html(the_text.join(""));
-    // 
-   
-    //this snippet works
-    var dataUri = "data:text/html," + encodeURIComponent(htmlDocument);
-    var link="data:text/html"+dataUri;
-    $("#dl").attr("href",link);
-    //
-      
-    /**********************************/
-
-              
-        $("#info").html(f.name);
-     
-           /* for (var i=0;i<text.length;i++){
-                if (text[i]=="�"){
-                    text[i]="'";
-                }
-            }*/
-    /*Put the style analysis algorithms here
-            for (var i=0;i<text.length;i++){
-                if (text[i]=="�"){
-                    counter++;
-                    console.log(counter);
-                }
-            }
-    */
-    
-//
-
-/*function download(strData, strFileName, strMimeType) {
-    var D = document,
-        A = arguments,
-        a = D.createElement("a"),
-        d = A[0],
-        n = A[1],
-        t = A[2] || "text/plain";
-
-    //build download link:
-    a.href = "data:" + strMimeType + "charset=utf-8," + escape(strData);
-
-
-    if (window.MSBlobBuilder) { // IE10
-        var bb = new MSBlobBuilder();
-        bb.append(strData);
-        return navigator.msSaveBlob(bb, strFileName);
-    }  end if(window.MSBlobBuilder) 
-
-
-
-    if ('download' in a) { //FF20, CH19
-        a.setAttribute("download", n);
-        a.innerHTML = "downloading...";
-        D.body.appendChild(a);
-        setTimeout(function() {
-            var e = D.createEvent("MouseEvents");
-            e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            a.dispatchEvent(e);
-            D.body.removeChild(a);
-        }, 66);
-        return true;
-    };  end if('download' in a) 
-
-
-
-    //do iframe dataURL download: (older W3)
-    var f = D.createElement("iframe");
-    D.body.appendChild(f);
-    f.src = "data:" + (A[2] ? A[2] : "application/octet-stream") + (window.btoa ? ";base64" : "") + "," + (window.btoa ? window.btoa : escape)(strData);
-    setTimeout(function() {
-        D.body.removeChild(f);
-    }, 333);
-    return true;
-}*/
-//
-$("#download_story").click(function(){
-download(contents, 'filename.txt', 'text/plain');
-});
-
-//
-                             }
-      r.readAsText(f);
-    } 
-    else { 
-      alert("Failed to load file");
-    }
-    
-  }
-  
-  document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
-</script>
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js">
-            
+        </main>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js">           
         </script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        
+        <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

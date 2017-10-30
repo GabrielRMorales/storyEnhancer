@@ -94,9 +94,21 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
 
+body {
+    background-color: teal;
+    font-family: 'Open Sans', sans-serif;
 
+}
 
+main{
+        margin: 75px 35%;
+        text-align: center;
+    }
+input {
+    padding-left: 100px;
+}
 
 
 
