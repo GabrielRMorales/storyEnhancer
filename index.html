@@ -20,21 +20,22 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+           
        <input type="file" id="fileinput" />
+       <a download="export.doc" href="data:text/html,%3Chtml%3E%3Cbody%3Econtent%20here%3C%2Fbody%3E%3C%2Fhtml%3E">Download Right here</a>
        <h2>Info</h2>
        <p id="info"></p>
-        <button id="download_story">Download</button>
+       <button id="download_story">Download</button>
+       
        <h2>Preview</h2>
        <p id="content_here"></p>
 <script type="text/javascript">
-  
-  function readSingleFile(evt) {
+   function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
     if (f) {
       var r = new FileReader();
       r.onload = function(e) { 
-
           var contents = e.target.result;
           var counter=0;          
         $("#info").html(f.name);
@@ -45,13 +46,19 @@
                     console.log(text[i]);
                 }
             }*/
+    /*Put the style analysis algorithms here*/
             for (var i=0;i<text.length;i++){
                 if (text[i]=="tensed"){
                     counter++;
                     console.log(counter);
                 }
             }
-            $("#content_here").html(text.join(" "));
+    //for downloading the changed files as a .doc
+    var htmlDocument=$(".WordSection1").html();
+    var dataUri = "data:text/html," + encodeURIComponent(htmlDocument);
+
+    /**********************************/
+    
 //
 
 function download(strData, strFileName, strMimeType) {
