@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title></title>
         <meta name="description" content="">
@@ -22,7 +22,7 @@
         <!-- Add your site or application content here -->
            
        <input type="file" id="fileinput" />
-       <a download="export.doc" href="data:text/html,%3Chtml%3E%3Cbody%3Econtent%20here%3C%2Fbody%3E%3C%2Fhtml%3E">Download Right here</a>
+       <a id="dl" download="export.doc">Download Right here</a>
        <h2>Info</h2>
        <p id="info"></p>
        <button id="download_story">Download</button>
@@ -33,35 +33,58 @@
    function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
+
     if (f) {
       var r = new FileReader();
       r.onload = function(e) { 
           var contents = e.target.result;
-          var counter=0;          
+
+          //for downloading the changed files as a .doc
+    var htmlDocument=e.target.result;
+    $("#content_here").html(contents);
+      var the_text=$("#content_here").html().split("");
+      for (var i=0;i<the_text.length;i++){
+                if (the_text[i]=="�"){
+                    the_text[i]="'";
+                }
+      }
+      $("#content_here").html(the_text.join(""));
+      htmlDocument=$("#content_here").html();
+   /* var this_text=$(".WordSection1").html().split("");
+      for (var i=0;i<this_text.length;i++){
+                if (this_text[i]=="�"){
+                    this_text[i]="'";
+                }
+      }
+      $(".WordSection1").html(the_text.join(""));
+    $(".WordSection1").html();*/
+    var dataUri = "data:text/html," + encodeURIComponent(htmlDocument);
+    var link="data:text/html"+dataUri;
+    $("#dl").attr("href",link);
+    
+      
+    /**********************************/
+
+              
         $("#info").html(f.name);
-        var text=contents.split(" ");
+     
            /* for (var i=0;i<text.length;i++){
-                if (text[i]=="Johnny"){
-                    text[i]="Jim";
-                    console.log(text[i]);
+                if (text[i]=="�"){
+                    text[i]="'";
                 }
             }*/
-    /*Put the style analysis algorithms here*/
+    /*Put the style analysis algorithms here
             for (var i=0;i<text.length;i++){
-                if (text[i]=="tensed"){
+                if (text[i]=="�"){
                     counter++;
                     console.log(counter);
                 }
             }
-    //for downloading the changed files as a .doc
-    var htmlDocument=$(".WordSection1").html();
-    var dataUri = "data:text/html," + encodeURIComponent(htmlDocument);
-
-    /**********************************/
+    */
     
 //
 
-function download(strData, strFileName, strMimeType) {
+/*function download(strData, strFileName, strMimeType) {
     var D = document,
         A = arguments,
         a = D.createElement("a"),
@@ -77,7 +100,7 @@ function download(strData, strFileName, strMimeType) {
         var bb = new MSBlobBuilder();
         bb.append(strData);
         return navigator.msSaveBlob(bb, strFileName);
-    } /* end if(window.MSBlobBuilder) */
+    }  end if(window.MSBlobBuilder) 
 
 
 
@@ -92,7 +115,7 @@ function download(strData, strFileName, strMimeType) {
             D.body.removeChild(a);
         }, 66);
         return true;
-    }; /* end if('download' in a) */
+    };  end if('download' in a) 
 
 
 
@@ -104,7 +127,7 @@ function download(strData, strFileName, strMimeType) {
         D.body.removeChild(f);
     }, 333);
     return true;
-}
+}*/
 //
 $("#download_story").click(function(){
 download(contents, 'filename.txt', 'text/plain');
@@ -127,7 +150,7 @@ download(contents, 'filename.txt', 'text/plain');
         </script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
