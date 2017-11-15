@@ -110,7 +110,9 @@ main{
 input {
     padding-left: 100px;
 }
-
+#content_here{
+    text-align: center;
+}
 .WordSection1 {
     padding: 12px;
 }
